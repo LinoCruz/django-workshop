@@ -1,0 +1,3 @@
+python-decouple
+PyMySQL==1.0.2
+pillow==9.2.0

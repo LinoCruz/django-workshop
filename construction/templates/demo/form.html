@@ -1,0 +1,40 @@
+<form enctype="multipart/form-data" method="post">
+  {% csrf_token %}
+
+  <br />
+  {% for i in form %}
+  <div class="mb-3">
+    <label for="" class="form-label">{{ i.label }}</label>
+
+    {% if i.field.widget.input_type == 'file' and i.value %}
+    <br />
+    <img
+      src="{{MEDIA_URL}}/images/{{ i.value }}"
+      alt="image of build"
+      width="150"
+    />
+    {% endif %} {% if i.field.widget.input_type == 'file' %} {% endif %}
+    <input
+      type="{{ i.field.widget.input_type }}"
+      class="form-control"
+      name="{{ i.name }}"
+      id=""
+      aria-describedby="helpId"
+      placeholder="{{ i.label }}"
+      value="{{ i.value | default:'' }}"
+    />
+  </div>
+  <div class="col-12 help-text">{{ i.errors }}</div>
+  {% endfor %}
+
+  <input name="" id="" class="btn btn-success" type="submit" value="Send" />
+
+  <a
+    name=""
+    id=""
+    class="btn btn-warning"
+    href="{% url 'constructions' %}"
+    role="button"
+    >Cancel</a
+  >
+</form>
